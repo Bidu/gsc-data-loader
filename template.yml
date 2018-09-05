@@ -11,4 +11,9 @@ Resources:
       Timeout: 15
       Environment:
         Variables:
-          FOO: bar
+          CLIENT_EMAIL: your google client email
+          PRIVATE_KEY: |
+            -----BEGIN PRIVATE KEY-----
+            your google private key
+            -----END PRIVATE KEY-----
+
