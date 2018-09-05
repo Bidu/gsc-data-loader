@@ -1,0 +1,30 @@
+{
+  "name": "gsc-data-loader",
+  "version": "1.0.0",
+  "description": "Utility to load data from google search console and load it on google big query",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "sam local invoke -e event.json GSCDataLoader"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bidu/gsc-data-loader.git"
+  },
+  "keywords": [
+    "google",
+    "search",
+    "console",
+    "google",
+    "big",
+    "query",
+    "aws",
+    "lambda"
+  ],
+  "author": "Thinkseg engineering team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bidu/gsc-data-loader/issues"
+  },
+  "homepage": "https://github.com/Bidu/gsc-data-loader#readme"
+}
