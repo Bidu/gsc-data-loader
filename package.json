@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "sam local invoke -e event.json GSCDataLoader"
+    "start": "sam local invoke -e event.json GSCDataLoader"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/Bidu/gsc-data-loader/issues"
   },
-  "homepage": "https://github.com/Bidu/gsc-data-loader#readme"
+  "homepage": "https://github.com/Bidu/gsc-data-loader#readme",
+  "dependencies": {
+    "googleapis": "^33.0.0"
+  }
 }
