@@ -16,4 +16,4 @@ Resources:
             -----BEGIN PRIVATE KEY-----
             your google private key
             -----END PRIVATE KEY-----
-
+          SITE_LIST: https://www.bidu.com.br,https://www.thinkseg.com
