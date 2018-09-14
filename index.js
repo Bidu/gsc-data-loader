@@ -1,41 +1,41 @@
 const auth = require('./lib/authorize');
 const gsc = require('./lib/gsc');
 const date = require('./lib/date');
+const bigquery = require('./lib/bigquery')
 
 exports.handler = async (event, context, callback) => {
   let authData = await auth();
 
   let data = {},
+      errorsCountRows = [],
+      searchAnalyticsRows = [],
+      sitemapsRows = [],
+      errorSamplesRows = [],
+
       sites = process.env.SITE_LIST.split(','),
       categories = process.env.CATEGORIES.split(','),
       platforms = process.env.PLATFORMS.split(',');
 
   for(site of sites) {
-    let errorCounts = await gsc.urlCrawlErrorsCounts(authData.client, site),
-        searchAnalytics = await gsc.searchAnalytics(authData.client, site, date.start(), date.end() ),
-        sitemaps = await gsc.sitemaps(authData.client, site),
-        errorsSamples = [];
-
-    for (let n = 0; n < categories.length; n ++) {
-      errorsSamples[n] = [];
+    errorsCountRows.push(await gsc.urlCrawlErrorsCounts(authData.client, site));
+    searchAnalyticsRows.push(await gsc.searchAnalytics(authData.client, site, date.start(), date.end()));
+    sitemapsRows.push(await gsc.sitemaps(authData.client, site));
+    let errorsSamples = [];
+    for (category of categories) {
       for (platform of platforms) {
-        errorSample = await gsc.errorsSamples(authData.client, site, categories[n],
-          platform);
-        errorsSamples[n].push(errorSample.data);
+        errorsSamples.push(await gsc.errorsSamples(authData.client, site, category, platform));
       }
     }
-
     let result = {
-      site,
-      errorsCount: errorCounts,
-      searchAnalytics,
-      sitemaps,
-      errorsSamples,
+      siteUrl: site,
+      createdAt: new Date(),
+      urlCrawlErrorSample: errorsSamples
+    }
+    errorSamplesRows.push(result);
 
-    };
-    data[site] = result;
   };
-
-  console.log(JSON.stringify(data, null, 2));
-
+  await bigquery.insert('errors_count', errorsCountRows);
+  await bigquery.insert('search_analytics', searchAnalyticsRows);
+  await bigquery.insert('sitemaps', sitemapsRows);
+  await bigquery.insert('errors_samples', errorSamplesRows);
 };
