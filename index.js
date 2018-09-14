@@ -11,14 +11,13 @@ exports.handler = async (event, context, callback) => {
       searchAnalyticsRows = [],
       sitemapsRows = [],
       errorSamplesRows = [],
-
       sites = process.env.SITE_LIST.split(','),
       categories = process.env.CATEGORIES.split(','),
       platforms = process.env.PLATFORMS.split(',');
 
   for(site of sites) {
-    errorsCountRows.push(await gsc.urlCrawlErrorsCounts(authData.client, site));
-    searchAnalyticsRows.push(await gsc.searchAnalytics(authData.client, site, date.start(), date.end()));
+    errorsCountRows.push(await gsc.urlCrawlErrorsCounts(authData.client, site)),
+    searchAnalyticsRows.push(await gsc.searchAnalytics(authData.client, site, date.start(), date.end())),
     sitemapsRows.push(await gsc.sitemaps(authData.client, site));
     let errorsSamples = [];
     for (category of categories) {
@@ -32,8 +31,8 @@ exports.handler = async (event, context, callback) => {
       urlCrawlErrorSample: errorsSamples
     }
     errorSamplesRows.push(result);
-
   };
+
   await bigquery.insert('errors_count', errorsCountRows);
   await bigquery.insert('search_analytics', searchAnalyticsRows);
   await bigquery.insert('sitemaps', sitemapsRows);
