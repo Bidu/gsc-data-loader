@@ -17,7 +17,7 @@ exports.handler = async (event, context, callback) => {
 
   for(site of sites) {
     errorsCountRows.push(await gsc.urlCrawlErrorsCounts(authData.client, site)),
-    searchAnalyticsRows.push(await gsc.searchAnalytics(authData.client, site, date.start(), date.end())),
+    searchAnalyticsRows.push(await gsc.searchAnalytics(authData.client, site, date.threeDaysAgo(), date.currentDay())),
     sitemapsRows.push(await gsc.sitemaps(authData.client, site));
     let errorsSamples = [];
     for (category of categories) {
@@ -32,7 +32,6 @@ exports.handler = async (event, context, callback) => {
     }
     errorSamplesRows.push(result);
   };
-
   await bigquery.insert('errors_count', errorsCountRows);
   await bigquery.insert('search_analytics', searchAnalyticsRows);
   await bigquery.insert('sitemaps', sitemapsRows);
