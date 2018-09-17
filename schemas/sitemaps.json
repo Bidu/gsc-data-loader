@@ -1,0 +1,76 @@
+[
+  {
+    "name": "sitemap",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "errors",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "lastDownloaded",
+        "type": "TIMESTAMP",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "isSitemapsIndex",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "isPending",
+        "type": "BOOLEAN",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "warnings",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "lastSubmitted",
+        "type": "TIMESTAMP",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "contents",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [
+          {
+            "name": "submitted",
+            "type": "INTEGER",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "indexed",
+            "type": "INTEGER",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "type",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          }
+        ]
+      },
+      {
+        "name": "path",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "name": "createdAt",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "siteUrl",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  }
+]
