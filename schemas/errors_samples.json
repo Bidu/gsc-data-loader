@@ -1,6 +1,6 @@
 [
   {
-    "name": "urlCrawlErrorSample",
+    "name": "data",
     "type": "RECORD",
     "mode": "REPEATED",
     "fields": [

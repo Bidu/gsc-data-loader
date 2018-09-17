@@ -28,7 +28,7 @@ exports.handler = async (event, context, callback) => {
     let result = {
       siteUrl: site,
       createdAt: new Date(),
-      urlCrawlErrorSample: errorsSamples
+      data: errorsSamples
     }
     errorSamplesRows.push(result);
   };
