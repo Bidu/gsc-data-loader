@@ -1,0 +1,34 @@
+[
+  {
+    "name": "errorsCount",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "count",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "category",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "platform",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "name": "createdAt",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "siteUrl",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  }
+]

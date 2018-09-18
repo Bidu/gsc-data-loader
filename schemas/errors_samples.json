@@ -1,0 +1,68 @@
+[
+  {
+    "name": "data",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "urlCrawlErrorSample",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [
+          {
+            "name": "urlDetails",
+            "type": "RECORD",
+            "mode": "NULLABLE",
+            "fields": [
+              {
+                "name": "linkedFromUrls",
+                "type": "STRING",
+                "mode": "REPEATED"
+              }
+            ]
+          },
+          {
+            "name": "responseCode",
+            "type": "INTEGER",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "first_detected",
+            "type": "TIMESTAMP",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "last_crawled",
+            "type": "TIMESTAMP",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "pageUrl",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          }
+        ]
+      },
+      {
+        "name": "platform",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "category",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "name": "createdAt",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "siteUrl",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  }
+]

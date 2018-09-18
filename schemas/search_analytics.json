@@ -1,0 +1,39 @@
+[
+  {
+    "name": "data",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "position",
+        "type": "FLOAT",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "ctr",
+        "type": "FLOAT",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "impressions",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "clicks",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "name": "createdAt",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "siteUrl",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  }
+]

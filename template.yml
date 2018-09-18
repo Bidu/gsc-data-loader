@@ -8,7 +8,15 @@ Resources:
     Properties:
       Runtime: nodejs8.10
       Handler: index.handler
-      Timeout: 15
+      Timeout: 120
       Environment:
         Variables:
-          FOO: bar
+          CLIENT_EMAIL: your google client email
+          PRIVATE_KEY: |
+            -----BEGIN PRIVATE KEY-----
+            your google private key
+            -----END PRIVATE KEY-----
+          PROJECT_ID: your google project_id
+          SITE_LIST: https://www.bidu.com.br/,https://www.thinkseg.com
+          CATEGORIES: authPermissions,notFollowed,notFound,other,serverError,soft404
+          PLATFORMS: web,smartphoneOnly
