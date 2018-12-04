@@ -1,9 +1,9 @@
 const auth = require('./lib/authorize');
 const gsc = require('./lib/gsc');
 const date = require('./lib/date');
-const bigquery = require('./lib/bigquery')
+const bigquery = require('./lib/bigquery');
 
-exports.handler = async (event, context, callback) => {
+exports.gscDataLoader = async (req, res) => {
   let authData = await auth();
 
   let data = {},
@@ -23,4 +23,6 @@ exports.handler = async (event, context, callback) => {
   await bigquery.insert('search_analytics', searchAnalyticsRows);
   await bigquery.insert('sitemaps', sitemapsRows);
   await bigquery.insert('errors_samples', errorSamplesRows);
+
+  res.send();
 };
