@@ -3,6 +3,32 @@ const gsc = require('./lib/gsc');
 const date = require('./lib/date');
 const bigquery = require('./lib/bigquery');
 
+searchAnalyticsQueries = async (req, res) => {
+  let authData =  await auth(),
+      AnalyticsRows = [],
+      searchAnalyticsQueries = [],
+      sites = ['https://www.bidu.com.br'];
+
+  for(site of sites) {
+    AnalyticsRows.push(await gsc.searchAnalytics(authData.client, site, date.threeDaysAgo(), date.currentDay(), ["query"]));
+    for(let row of AnalyticsRows) {
+      for(let fields of row.data) {
+        searchAnalyticsQueries.push({
+          siteUrl: site,
+          createdAt: new Date(),
+          key: fields.keys[0],
+          clicks: fields.clicks,
+          impressions: fields.impressions,
+          ctr: fields.ctr,
+          position: fields.position
+        });
+      }
+    }
+  }
+  await bigquery.insert('search_analytics_queries', searchAnalyticsQueries);
+  res.send();
+}
+
 exports.gscDataLoader = async (req, res) => {
   let authData = await auth();
 
