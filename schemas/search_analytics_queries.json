@@ -1,0 +1,37 @@
+[
+  {
+    "name": "siteUrl",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "createdAt",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "key",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  }
+  {
+    "name": "position",
+    "type": "FLOAT",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "ctr",
+    "type": "FLOAT",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "impressions",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "clicks",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  }
+]
