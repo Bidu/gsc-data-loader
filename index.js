@@ -4,15 +4,15 @@ const date = require('./lib/date');
 const bigquery = require('./lib/bigquery');
 
 searchAnalyticsQueries = async (req, res) => {
-  let authData =  await auth(),
+  const authData =  await auth(),
       AnalyticsRows = [],
       searchAnalyticsQueries = [],
-      sites = ['https://www.bidu.com.br'];
+      sites = process.env.SITE_LIST.split(',');
 
   for(site of sites) {
     AnalyticsRows.push(await gsc.searchAnalytics(authData.client, site, date.threeDaysAgo(), date.currentDay(), ["query"]));
-    for(let row of AnalyticsRows) {
-      for(let fields of row.data) {
+    AnalyticsRows.forEach(row => {
+      row.data.forEach(fields => {
         searchAnalyticsQueries.push({
           siteUrl: site,
           createdAt: new Date(),
@@ -22,8 +22,8 @@ searchAnalyticsQueries = async (req, res) => {
           ctr: fields.ctr,
           position: fields.position
         });
-      }
-    }
+      });
+    });
   }
   await bigquery.insert('search_analytics_queries', searchAnalyticsQueries);
   res.send();
