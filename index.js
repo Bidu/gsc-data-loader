@@ -20,7 +20,9 @@ exports.gscDataLoader = async (req, res) => {
     searchAnalyticsRows.push(await gsc.searchAnalytics(authData.client, site, date.threeDaysAgo(), date.currentDay()));
     sitemapsRows.push(await gsc.sitemaps(authData.client, site));
     errorSamplesRows.push(await gsc.errorsSamples(authData.client, site));
-    analyticsRows.push(await gsc.searchAnalytics(authData.client, site, date.threeDaysAgo(), date.currentDay(), ["query"]));
+
+    let searchAnalyticsResult = await gsc.searchAnalytics(authData.client, site, date.threeDaysAgo(), date.currentDay(), ["query"]);
+    analyticsRows.push(searchAnalyticsResult);
     analyticsRows.forEach(row => {
       row.data.forEach(fields => {
         searchAnalyticsQueries.push({
